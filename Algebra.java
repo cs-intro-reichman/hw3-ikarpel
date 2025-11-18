@@ -25,43 +25,105 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int i = x1;
+		int count = 0;
+		while ( count < x2 ) {
+			i = i + 1;
+			count = count + 1;
+		}
+		return i;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	
+		int i = x1;
+		int count = 0;
+		while ( count < x2 ) {
+			i -=  1;
+			count = count + 1;
+		}
+		return i;
+		
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int i = x1;
+		int result = 0;
+		int count = 0;
+		while ( count < x2 ) {
+			result +=  i;
+			count = count + 1;
+		}
+		return result;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		return 0;
+		int i = x;
+		int result = 0;
+		int count = 0;
+		int countd = 1;
+		while (countd < n) {
+			result = 0;
+			while ( count < x ) {
+				result +=  i;
+				count = count + 1;
+			}
+			countd += 1;
+			count = 0;
+			i = result;
+			
+		}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int i = x2;
+		int result = 0;
+		int count = 0;
+		while ( result < x1 ) {
+			result +=  i;
+			count = count + 1;
+		}
+		
+		return count;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int i = x2;
+		int result = 0;
+		int count = 0;
+		while ( result < x1 ) {
+			result +=  i;
+			count = count + 1;
+		}
+		if(result == x1){
+			return 0;
+		}else{
+			return minus(x1,minus(result,i));
+		}
+		
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
-	}	  	  
+		int i = 0;
+		int result = 0;
+		while ( result != x ) {
+			result = times(i,i);
+			i++;
+			if(result > x){
+				return minus(i,1);
+			}
+			
+		}
+		
+		return minus(i,1);
+	}	
+	  	  
 }

@@ -48,6 +48,7 @@ public class Algebra {
 	}
 
 	// Returns x1 * x2
+	
 	public static int times(int x1, int x2) {
 		int i = x1;
 		int result = 0;

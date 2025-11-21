@@ -28,22 +28,63 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
-	}
-	   
-	// Returns a preprocessed version of the given string: all the letter characters are converted
-	// to lower-case, and all the other characters are deleted, except for spaces, which are left
-	// as is. For example, the string "What? No way!" becomes "whatnoway"
-	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
-	} 
-	   
-	// Returns a random anagram of the given string. The random anagram consists of the same
-	// characters as the given string, re-arranged in a random order. 
-	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
-	}
+        String pStr1 = preProcess(str1).replace(" ", "");
+        String pStr2 = preProcess(str2).replace(" ", "");
+        
+        if (pStr1.length() != pStr2.length()) {
+            return false;
+        }
+        
+        if (pStr1.length() == 0) {
+            return true;
+        }
+        
+        char[] arr1 = pStr1.toCharArray();
+        char[] arr2 = pStr2.toCharArray();
+        
+        java.util.Arrays.sort(arr1);
+        java.util.Arrays.sort(arr2);
+        
+        String sortedStr1 = new String(arr1);
+        String sortedStr2 = new String(arr2);
+        
+        return sortedStr1.equals(sortedStr2);
+    }
+       
+    public static String preProcess(String str) {
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            
+            if (Character.isLetter(c)) {
+                sb.append(Character.toLowerCase(c));
+            } else if (c == ' ') {
+                sb.append(c);
+            }
+        }
+        
+        return sb.toString();
+    } 
+       
+    public static String randomAnagram(String str) {
+        java.util.List<Character> characters = new java.util.ArrayList<>();
+        
+        for (char c : str.toCharArray()) {
+            characters.add(c);
+        }
+        
+        java.util.Random random = new java.util.Random();
+        StringBuilder sb = new StringBuilder();
+        
+        while (!characters.isEmpty()) {
+            int randomIndex = random.nextInt(characters.size());
+            
+            sb.append(characters.get(randomIndex));
+            
+            characters.remove(randomIndex);
+        }
+        
+        return sb.toString();
+    }
 }

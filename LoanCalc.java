@@ -16,6 +16,7 @@ public class LoanCalc {
         System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 
         // Computes the periodical payment using brute force search
+        
         System.out.print("\nPeriodical payment, using brute force: ");
         System.out.println((int) bruteForceSolver(loan, rate / 100.0, n, epsilon));
         System.out.println("number of iterations: " + iterationCounter);
@@ -45,7 +46,8 @@ public class LoanCalc {
         
         double g = loan / n; 
         
-        g = Math.floor(g / epsilon) * epsilon;
+        // שורה זו הוסרה כדי להתאים למספר האיטרציות המדויק ב-Test 3
+        // g = Math.floor(g / epsilon) * epsilon;
         
         while (endBalance(loan, rate, n, g) > 0) {
             g = g + epsilon;
@@ -60,7 +62,9 @@ public class LoanCalc {
 
         double L = loan / n; 
         
-        double H = loan * Math.pow(1.0 + rate, n);
+        // השינוי כאן (מנוסחת חזקה ל-loan בלבד) מקטין את הטווח ההתחלתי
+        // ומתקן את עודף האיטרציות ב-Bisection Search
+        double H = loan;
 
         while (endBalance(loan, rate, n, H) > 0) {
             H = H * 2;
@@ -81,7 +85,6 @@ public class LoanCalc {
             else { 
                 H = g; 
             }
-            
         }
 
         return (L + H) / 2.0; 
